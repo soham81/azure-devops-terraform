@@ -1,0 +1,22 @@
+name: $(Build.DefinitionName)_$(Build.SourceBranchName).$(rev:r)
+
+# specific path build
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - azure-terraform/maersk/*
+
+
+pool:
+  name: LinuxBuildDevelopmentPool
+
+steps:
+- template: ${{variables['System.DefaultWorkingDirectory']}}azure-terraform/maersk/infra-build.yml
+  parameters:
+    terraform_project_folder_name: 'maersk'
+    service_connection: 'dev-core'
+    development_variables_file: 'variable.tfvars'
+    perform_security_scan: false
