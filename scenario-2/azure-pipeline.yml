@@ -7,16 +7,16 @@ trigger:
     - master
   paths:
     include:
-    - azure-terraform/maersk/*
+    - azure-devops-terraform/scenario-2/terraform-files/*
 
 
 pool:
   name: LinuxBuildDevelopmentPool
 
 steps:
-- template: ${{variables['System.DefaultWorkingDirectory']}}azure-terraform/maersk/infra-build.yml
+- template: ${{variables['System.DefaultWorkingDirectory']}}azure-devops-terraform/scenario-2/infra-build.yml
   parameters:
-    terraform_project_folder_name: 'maersk'
+    terraform_project_folder_name: 'terraform-files'
     service_connection: 'dev-core'
     development_variables_file: 'variable.tfvars'
     perform_security_scan: false
